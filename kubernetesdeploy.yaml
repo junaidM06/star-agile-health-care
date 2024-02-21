@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: healthcare-eta-deploy
+  name: healthcare-app-deploy
   labels:
-    app: healthcare-eta-app
+    app: healthcare-app-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: healthcare-eta-app
+      app: healthcare-app-app
   template:
     metadata:
       labels:
-        app: healthcare-eta-app
+        app: healthcare-app-app
     spec:
       containers:
-      - name: healthcare-eta-container
+      - name: healthcare-app-container
         image: junaidm3699/healthcare-eta-app
         ports:
         - containerPort: 8082
@@ -23,15 +23,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: healthcare-eta-np-service
+  name: healthcare-app-np-service
   labels:
-    app: healthcare-eta-app
+    app: healthcare-app-app
 spec:
   selector:
-    app: healthcare-eta-app
+    app: healthcare-app-app
 
   type: NodePort
   ports:
-  - nodePort: 31042    
+  - nodePort: 31055    
     port: 8082
     targetPort: 8082
